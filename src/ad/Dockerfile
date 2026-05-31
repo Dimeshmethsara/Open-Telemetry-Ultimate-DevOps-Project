@@ -16,5 +16,16 @@ RUN ./gradlew installDist -PprotoSourceDir=./proto
 
 
 ##########################################
+FROM eclipse-temurin:21
 
+WORKDIR /usr/src/app/
+
+COPY --from=builder /usr/src/app ./
+
+ENV AD_PORT 9099
+
+
+
+
+ENTRYPOINT ["./build/install/opentelemetry-demo-ad/bin/Ad"]
 
